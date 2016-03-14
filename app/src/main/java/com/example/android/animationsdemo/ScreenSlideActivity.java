@@ -103,7 +103,7 @@ public class ScreenSlideActivity extends AppCompatActivity {
         });
         mPagerAdapter = new ScreenSlidePagerAdapter(getFragmentManager());
         mPager.setAdapter(mPagerAdapter);
-        mPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+        mPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
                 // When changing pages, reset the action bar actions since they are dependent
