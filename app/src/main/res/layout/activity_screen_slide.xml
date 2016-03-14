@@ -21,36 +21,32 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context="com.example.android.animationsdemo.ScreenSlideActivity">
+
+
     <android.support.v4.view.ViewPager
-    android:id="@+id/pager"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" />
-
-
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
     <LinearLayout
+        android:background="@color/abc_search_url_text_normal"
+        android:orientation="vertical"
+        android:visibility="gone"
         android:id="@+id/llBottomResources"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="5dp" >
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_gravity="bottom|right"
-            android:src="@android:drawable/ic_menu_camera" />
-        <ImageView
-            android:id="@+id/ivArrowUp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            />
 
         <TextView
+            android:text="This is sample text "
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:textSize="16sp" />
+        android:layout_height="wrap_content" />
+
+
     </LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:src="@android:drawable/btn_star" />
 </android.support.design.widget.CoordinatorLayout>

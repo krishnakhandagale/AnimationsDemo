@@ -20,6 +20,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v13.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
@@ -29,6 +30,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
 
 /**
  * Demonstrates a "screen-slide" animation using a {@link ViewPager}. Because {@link ViewPager}
@@ -57,14 +61,46 @@ public class ScreenSlideActivity extends AppCompatActivity {
      * The pager adapter, which provides the pages to the view pager widget.
      */
     private PagerAdapter mPagerAdapter;
-
+    LinearLayout resources=null;
+    ViewPager pager=null;
+    FloatingActionButton fab=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_slide);
-
+        resources= (LinearLayout) findViewById(R.id.llBottomResources);
+        pager= (ViewPager) findViewById(R.id.pager);
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (ViewPager) findViewById(R.id.pager);
+
+        fab= (FloatingActionButton) findViewById(R.id.fab);
+
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(pager.getVisibility()==View.VISIBLE){
+                    Animation bottomUp = AnimationUtils.loadAnimation(ScreenSlideActivity.this,
+                            R.anim.bottom_up);
+                    pager.setVisibility(View.GONE);
+
+                    resources.startAnimation(bottomUp);
+                    resources.setVisibility(View.VISIBLE);
+                    //		llContent.setLayoutParams(lp);
+
+                }else{
+                    Animation bottomDown = AnimationUtils.loadAnimation(
+                            ScreenSlideActivity.this, R.anim.bottom_down);
+
+                    pager.setVisibility(View.VISIBLE);
+
+                    resources.startAnimation(bottomDown);
+                    resources.setVisibility(View.GONE);
+                    //		llContent.setLayoutParams(lp);
+                }
+
+            }
+        });
         mPagerAdapter = new ScreenSlidePagerAdapter(getFragmentManager());
         mPager.setAdapter(mPagerAdapter);
         mPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
@@ -78,12 +114,6 @@ public class ScreenSlideActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
     }
 
     @Override
